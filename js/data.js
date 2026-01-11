@@ -62,7 +62,19 @@ window.portfolioData = {
             "level": 30
         }
     ],
-    "projects": [],
+    "projects": [
+        {
+            "title": "ATM Simulation",
+            "description": "Built an ATM Simulation application using Java and Object-Oriented Programming concepts. Implemented features like user authentication, balance inquiry, deposit, withdrawal, and transaction handling. The project demonstrates strong understanding of core Java and OOP design principles.",
+            "tags": [
+                "Java",
+                "Object Oriented Programming"
+            ],
+            "link": "#",
+            "repoUrl": "https://github.com/kiranajay03092006-hub/ATM-simulation.git",
+            "snippet": "public void withdraw(double amount) throws InsufficientBalanceException {\r\n    if (amount > balance) {\r\n        throw new InsufficientBalanceException(\"Insufficient balance\");\r\n    }\r\n    balance -= amount;\r\n    System.out.println(\"Withdrawal successful. Remaining balance: \" + balance);\r\n}\r\n\r\npublic void deposit(double amount) {\r\n    if (amount > 0) {\r\n        balance += amount;\r\n        System.out.println(\"Amount deposited. Current balance: \" + balance);\r\n    }\r\n}"
+        }
+    ],
     "moments": [],
     "contact": {
         "email": "kiranajay03092006@gmail.com",
