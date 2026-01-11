@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiran Portfolio</title>
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bot.css">
+</head>
+
+<body>
+
+    <!-- Background Animation Layer -->
+    <div class="bg-layer">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+            <img class="editable-img" data-key="nav.logoImage" src="" alt="Profile"
+                style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; cursor: pointer;">
+            <span>AJAY</span>
+        </div>
+        <div class="nav-links">
+            <a href="#hero">Start</a>
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#moments">Moments</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button id="admin-toggle" class="icon-btn" aria-label="Toggle Admin Mode">
+            <i data-lucide="lock"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h1 class="editable" data-key="hero.name">Kiran</h1>
+                <p class="tagline editable" data-key="hero.tagline">Defying Gravity | Designing the Future</p>
+                <p class="description editable" data-key="hero.description">I build digital experiences that merge art,
+                    technology, and futuristic design.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container glass-card">
+                <h2>About Me</h2>
+                <p class="editable" data-key="about.text">Loading...</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skills-grid" id="skills-container">
+                    <!-- Skills injected by JS -->
+                </div>
+                <div class="admin-only add-btn-container">
+                    <button class="btn btn-sm" onclick="app.addItem('skills')">+ Add Skill</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Selected Projects</h2>
+                <div class="projects-grid" id="projects-container">
+                    <!-- Projects injected by JS -->
+                </div>
+                <!-- Admin specific: Add Project Button -->
+                <div class="admin-only add-btn-container">
+                    <button class="btn btn-sm" onclick="app.addItem('projects')">+ Add Project</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Moments / Gallery Section -->
+        <section id="moments" class="section">
+            <div class="container">
+                <h2>Moments</h2>
+                <div class="moments-grid" id="moments-container">
+                    <!-- Moments injected by JS -->
+                </div>
+                <div class="admin-only add-btn-container">
+                    <button class="btn btn-sm" onclick="app.addItem('moments')">+ Add Moment</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container glass-card text-center">
+                <h2>Get In Touch</h2>
+                <div class="contact-links" id="contact-container">
+                    <p>Email: <a class="editable" data-key="contact.email">Loading...</a></p>
+                    <p>LinkedIn: <a class="editable" data-key="contact.linkedin" target="_blank">Loading...</a></p>
+                    <p>Mobile: <a class="editable" data-key="contact.phone">Loading...</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div id="admin-panel" class="admin-panel hidden">
+        <div class="admin-header">
+            <h3>Admin Mode</h3>
+            <button id="close-admin" class="icon-btn"><i data-lucide="x"></i></button>
+        </div>
+        <div class="admin-content">
+            <p>Click on text elements to edit them directly.</p>
+            <hr>
+            <div class="action-row">
+                <button id="save-btn" class="btn btn-primary">Save Changes</button>
+                <button id="reset-btn" class="btn btn-outline">Reset to Default</button>
+            </div>
+            <div class="action-row">
+                <button id="export-btn" class="btn btn-sm">Export Data JSON</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Info Modal -->
+    <div id="code-modal" class="modal hidden">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Title</h3>
+                <button id="close-modal" class="icon-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-desc">Description goes here.</p>
+
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span>Code Snippet</span>
+                        <button class="copy-btn" id="copy-btn">Copy</button>
+                    </div>
+                    <pre><code id="modal-code">const x = 10;</code></pre>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="#" id="modal-repo-link" target="_blank" class="btn btn-primary">
+                        <i data-lucide="github"></i> View Repo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="modal hidden">
+        <div class="modal-content glass-card" style="max-width: 400px; text-align: center;">
+            <div class="modal-header" style="justify-content: center; border-bottom: none;">
+                <h3>Admin Access</h3>
+            </div>
+            <div class="modal-body">
+                <input type="password" id="admin-password-input" class="glass-input" placeholder="Enter Password">
+                <div class="modal-actions" style="justify-content: center; margin-top: 1.5rem;">
+                    <button id="admin-login-submit" class="btn btn-primary">Unlock</button>
+                    <button id="admin-login-cancel" class="btn btn-outline">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Bot UI -->
+    <div class="bot-container">
+        <div class="chat-window hidden">
+            <div class="chat-header">
+                <h3>AI Assistant</h3>
+                <button class="close-chat"><i data-lucide="x"></i></button>
+            </div>
+            <div class="chat-messages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" placeholder="Ask me anything...">
+                <button class="send-btn"><i data-lucide="send"></i></button>
+            </div>
+        </div>
+        <div class="bot-orb">
+            <i data-lucide="bot"></i>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/bot.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
