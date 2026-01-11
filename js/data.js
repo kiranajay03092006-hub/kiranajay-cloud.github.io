@@ -75,7 +75,13 @@ window.portfolioData = {
             "snippet": "public void withdraw(double amount) throws InsufficientBalanceException {\r\n    if (amount > balance) {\r\n        throw new InsufficientBalanceException(\"Insufficient balance\");\r\n    }\r\n    balance -= amount;\r\n    System.out.println(\"Withdrawal successful. Remaining balance: \" + balance);\r\n}\r\n\r\npublic void deposit(double amount) {\r\n    if (amount > 0) {\r\n        balance += amount;\r\n        System.out.println(\"Amount deposited. Current balance: \" + balance);\r\n    }\r\n}"
         }
     ],
-    "moments": [],
+    "moments": [
+        {
+            "caption": "Innovation Pitstop 2025",
+            "date": "2025-10-28",
+            "image": "pics/Gemini_Generated_Image_t5lbqqt5lbqqt5lb.png"
+        }
+    ],
     "contact": {
         "email": "kiranajay03092006@gmail.com",
         "linkedin": "www.linkedin.com/in/kiran-ajay-sn-0b63bb37b",
